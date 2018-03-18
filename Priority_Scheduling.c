@@ -6,6 +6,18 @@ struct process
 	int bt;int ubt;int start;int wait;int comp;int tat;
 	
 };
+void increasepri(struct process p[],int n)
+{
+	int i;
+	for(i=0;i<n;i++)
+	{
+		if(p[i].wait!=0&&p[i].wait%2==0)
+		{
+			if(p[i].pri>1)
+			p[i].pri-=1;
+		}
+	}
+}
 
 int main()
 {
