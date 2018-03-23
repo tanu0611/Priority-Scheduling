@@ -38,4 +38,34 @@ int main()
 		pro[i].start=-1;
 		pro[i].ubt=pro[i].bt;
 	}
+	pro[p].pri=INT_MAX;
+		printf("\nP AT BT Priority\n");
+	for(i=0;i<p;i++)
+	{
+		printf("%d  %d  %d  %d\n",pro[i].id,pro[i].at,pro[i].bt,pro[i].pri);
+	}
+	time=0;
+	working=p;
+	r=p;
+	while(r!=0)
+	{
+		for(i=0;i<p;i++)
+		{	
+			if(pro[i].at<=time && pro[i].ubt!=0 && pro[i].pri<pro[working].pri)
+			{
+				
+				working=i;
+				if(i!=working)
+				pro[i].wait+=1;
+			}
+		}
+		if(pro[working].start==-1)
+		{
+			if(r!=p)
+			{
+			pro[working].start=time+2;
+			}
+			else
+			pro[working].start=time;
+		}
 	
