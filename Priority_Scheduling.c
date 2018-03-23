@@ -68,4 +68,18 @@ int main()
 			else
 			pro[working].start=time;
 		}
+		//	printf("At time %d Process%d is running\n",time,pro[working].id);
+		printf("\n\nProcess   AT   BT   CT   TAT   WT\n");
+	for(i=0;i<p;i++)
+	{
+		pro[i].tat=pro[i].comp-pro[i].at;
+		avgtat=avgtat+pro[i].tat;
+		pro[i].wait=pro[i].tat-pro[i].bt;
+		avgwt=avgwt+pro[i].wait;
+		printf("%7d   %2d   %2d   %2d   %2d   %2d\n",pro[i].id,pro[i].at,pro[i].bt,pro[i].comp,pro[i].tat,pro[i].wait);
+	}
+	avgwt=(avgwt*1.0)/(p*1.0);
+	avgtat=(avgtat*1.0)/(p*1.0);
+	printf("Average waiting time is %0.2f\nAverage TAT is %0.2f\n",avgwt,avgtat);
+}
 	
