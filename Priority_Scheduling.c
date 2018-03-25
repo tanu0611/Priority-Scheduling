@@ -18,7 +18,6 @@ void increasepri(struct process p[],int n)
 		}
 	}
 }
-
 int main()
 {
 	int time,p,i,j,r,working=-1,current;
@@ -39,7 +38,7 @@ int main()
 		pro[i].ubt=pro[i].bt;
 	}
 	pro[p].pri=INT_MAX;
-		printf("\nP AT BT Priority\n");
+	printf("\nP AT BT Priority\n");
 	for(i=0;i<p;i++)
 	{
 		printf("%d  %d  %d  %d\n",pro[i].id,pro[i].at,pro[i].bt,pro[i].pri);
@@ -68,8 +67,27 @@ int main()
 			else
 			pro[working].start=time;
 		}
-		//	printf("At time %d Process%d is running\n",time,pro[working].id);
-		printf("\n\nProcess   AT   BT   CT   TAT   WT\n");
+	
+		pro[working].ubt-=1;
+		current=working;
+		time=time+1;
+		increasepri(pro,p);
+		 if(pro[working].ubt==0)
+		{
+			pro[working].comp=time;
+			time+=2;
+			current=working;
+			increasepri(pro,p);
+			working=p;
+			r--;
+		}
+		if(r!=10&&current!=working)
+		{
+			time+=2;
+			current=working;
+		}
+	}
+	printf("\n\nProcess   AT   BT   CT   TAT   WT\n");
 	for(i=0;i<p;i++)
 	{
 		pro[i].tat=pro[i].comp-pro[i].at;
@@ -82,4 +100,3 @@ int main()
 	avgtat=(avgtat*1.0)/(p*1.0);
 	printf("Average waiting time is %0.2f\nAverage TAT is %0.2f\n",avgwt,avgtat);
 }
-	
